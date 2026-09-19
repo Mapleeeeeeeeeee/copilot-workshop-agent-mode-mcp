@@ -7,6 +7,7 @@ const emptyState = document.querySelector("#empty-state");
 const remainingCount = document.querySelector("#remaining-count");
 const themeToggle = document.querySelector("#theme-toggle");
 const filterButtons = document.querySelectorAll(".filter-button");
+const clearCompletedButton = document.querySelector("#clear-completed-button");
 
 let todos = loadTodos();
 let currentFilter = "all";
@@ -90,6 +91,9 @@ function render() {
   emptyState.textContent = todos.length === 0
     ? "還沒有任何待辦事項,新增一個吧!"
     : `目前沒有符合「${currentFilter === "active" ? "未完成" : "已完成"}」篩選的待辦事項，項目仍保留在清單中。`;
+  const completedCount = todos.filter((todo) => todo.completed).length;
+  clearCompletedButton.disabled = completedCount === 0;
+  clearCompletedButton.setAttribute("aria-label", `清除所有已完成的待辦事項（${completedCount} 項）`);
   remainingCount.textContent = `未完成:${todos.filter((todo) => !todo.completed).length} 項`;
 }
 
@@ -111,6 +115,19 @@ filterButtons.forEach((button) => {
     });
     render();
   });
+});
+
+// 確認後一次清除所有已完成的待辦事項。
+clearCompletedButton.addEventListener("click", () => {
+  const completedCount = todos.filter((todo) => todo.completed).length;
+  if (completedCount === 0) return;
+
+  const confirmed = window.confirm(`確定要清除 ${completedCount} 項已完成的待辦事項嗎？`);
+  if (!confirmed) return;
+
+  todos = todos.filter((todo) => !todo.completed);
+  saveTodos();
+  render();
 });
 
 // 新增一筆待辦事項，空白內容不會被加入。
