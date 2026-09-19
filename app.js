@@ -89,7 +89,7 @@ function render() {
   emptyState.hidden = visibleTodos.length > 0;
   emptyState.textContent = todos.length === 0
     ? "還沒有任何待辦事項,新增一個吧!"
-    : `目前沒有${currentFilter === "active" ? "未完成" : "已完成"}的待辦事項。`;
+    : `目前沒有符合「${currentFilter === "active" ? "未完成" : "已完成"}」篩選的待辦事項，項目仍保留在清單中。`;
   remainingCount.textContent = `未完成:${todos.filter((todo) => !todo.completed).length} 項`;
 }
 
