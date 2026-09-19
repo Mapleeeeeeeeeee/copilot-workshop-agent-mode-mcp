@@ -17,6 +17,53 @@
   --shadow: rgba(35, 65, 55, 0.12);
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-background: #18211f;
+    --card-background: #25322f;
+    --input-background: #1e2a27;
+    --text-primary: #edf4f0;
+    --text-secondary: #afc0b8;
+    --border: #3b5049;
+    --accent: #63c5a5;
+    --accent-hover: #7bd8b8;
+    --accent-soft: #294c43;
+    --danger: #f08d8d;
+    --danger-soft: #4a2f31;
+    --shadow: rgba(0, 0, 0, 0.3);
+  }
+}
+
+:root[data-theme="light"] {
+  --page-background: #eef3f1;
+  --card-background: #fffdf9;
+  --input-background: #f7f8f5;
+  --text-primary: #24302d;
+  --text-secondary: #6b7772;
+  --border: #dce5df;
+  --accent: #277b68;
+  --accent-hover: #1f6455;
+  --accent-soft: #e4f1ec;
+  --danger: #b45858;
+  --danger-soft: #f8e9e6;
+  --shadow: rgba(35, 65, 55, 0.12);
+}
+
+:root[data-theme="dark"] {
+  --page-background: #18211f;
+  --card-background: #25322f;
+  --input-background: #1e2a27;
+  --text-primary: #edf4f0;
+  --text-secondary: #afc0b8;
+  --border: #3b5049;
+  --accent: #63c5a5;
+  --accent-hover: #7bd8b8;
+  --accent-soft: #294c43;
+  --danger: #f08d8d;
+  --danger-soft: #4a2f31;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
 body {
   min-height: 100vh;
   margin: 0;
@@ -43,6 +90,13 @@ body {
   margin-bottom: 24px;
 }
 
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .eyebrow {
   margin: 0 0 8px;
   color: var(--accent);
@@ -57,6 +111,23 @@ h1 {
   line-height: 1.2;
 }
 
+.theme-toggle {
+  flex: 0 0 auto;
+  padding: 8px 10px;
+  color: var(--text-primary);
+  background: var(--input-background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.theme-toggle:hover,
+.filter-button:hover {
+  border-color: var(--accent);
+}
+
 .subtitle {
   margin: 10px 0 0;
   color: var(--text-secondary);
@@ -67,6 +138,30 @@ h1 {
   display: flex;
   gap: 10px;
   margin-bottom: 22px;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin: -8px 0 22px;
+}
+
+.filter-button {
+  flex: 1;
+  padding: 9px 8px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.filter-button.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  font-weight: 700;
 }
 
 .todo-input {

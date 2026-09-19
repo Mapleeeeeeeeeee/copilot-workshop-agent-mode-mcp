@@ -10,7 +10,10 @@
   <main class="app-card">
     <header class="app-header">
       <p class="eyebrow">今日整理</p>
-      <h1>我的待辦清單</h1>
+      <div class="title-row">
+        <h1>我的待辦清單</h1>
+        <button id="theme-toggle" class="theme-toggle" type="button"></button>
+      </div>
       <p class="subtitle">把想做的事，一件一件完成。</p>
     </header>
 
@@ -20,6 +23,13 @@
       <input id="todo-input" class="todo-input" type="text" maxlength="120" placeholder="接下來要做什麼？">
       <button class="add-button" type="submit">新增</button>
     </form>
+
+    <!-- 切換目前要顯示的待辦事項範圍。 -->
+    <div class="filter-bar" aria-label="待辦事項篩選">
+      <button class="filter-button active" type="button" data-filter="all" aria-pressed="true">全部</button>
+      <button class="filter-button" type="button" data-filter="active" aria-pressed="false">未完成</button>
+      <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">已完成</button>
+    </div>
 
     <!-- 待辦清單由 app.js 動態產生。 -->
     <ul id="todo-list" class="todo-list" aria-live="polite"></ul>
